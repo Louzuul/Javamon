@@ -34,7 +34,7 @@ public class Player
     }
     
     public void main(){
-    
+        controls();
     }
     
     public void controls(){
