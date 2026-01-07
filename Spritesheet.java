@@ -15,6 +15,8 @@ public class Spritesheet {
     // Standard Sprite-Größen als Konstanten
     public static final int SPRITE_16 = 16;
     public static final int SPRITE_32 = 32;
+    public static final int SPRITE_48 = 48;
+    public static final int SPRITE_54 = 54;
     public static final int SPRITE_64 = 64;
     
     private BufferedImage spritesheet;

@@ -9,7 +9,7 @@ public class Main
     // Objekte
     Bildschirm derBildschirm;
     Stift meinStift;
-
+    
     // Konstruktor
     public Main()
     {
