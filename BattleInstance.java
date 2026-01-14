@@ -8,15 +8,17 @@ public class BattleInstance
 {
     // Objekte
     Bildschirm derBildschirm;
-    Stift meinStift;
+    Buntstift meinStift;
     Uhr dieUhr;
+    Spritesheet charakterSprites;
 
     // Konstruktor
     public BattleInstance()
     {
         derBildschirm = new Bildschirm();
-        meinStift = new Stift();
+        meinStift = new Buntstift();
         dieUhr = new Uhr();
+        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerBattle", Spritesheet.SPRITE_48);
     }
 
     // Dienste
@@ -43,5 +45,8 @@ public class BattleInstance
                 MP3Player.play("assets/bgm/battlewon.mp3");
             }
         }
+    }
+    
+    public void player(){
     }
 }

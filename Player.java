@@ -22,27 +22,23 @@ public class Player
     int idleRight = 0;
     int idleDown = 0;
     int idleLeft = 0;
-    int playerX = 10;
-    int playerY = 10;
+    int playerX = 990;
+    int playerY = 540;
+    int Spalte = 3;
+    int Zeile = 0;
+    int AnimUp = 1;
+    int AnimDown = 1;
+    int AnimLeft = 1;
+    int AnimRight = 1;
 
     // Konstruktor
     public Player()
     {
-        derBildschirm = new Bildschirm();
+        derBildschirm = new Bildschirm(1980,1080,true);
         meinStift = new Buntstift();
         dieTastatur = new Tastatur();
         dieUhr = new Uhr();
-        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerIdleUp", Spritesheet.SPRITE_16);
-        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerIdleDown", Spritesheet.SPRITE_16);
-        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerIdleLeft", Spritesheet.SPRITE_16);
-        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerIdleRight", Spritesheet.SPRITE_16);
-        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerWalkUp1", Spritesheet.SPRITE_16);
-        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerWalkUp2", Spritesheet.SPRITE_16);
-        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerWalkDown1", Spritesheet.SPRITE_16);
-        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerWalkDown2", Spritesheet.SPRITE_16);
-        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerWalkLeft", Spritesheet.SPRITE_16);
-        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerWalkRight", Spritesheet.SPRITE_16);
-        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerBattle", Spritesheet.SPRITE_48);
+        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerOverworld.png", Spritesheet.SPRITE_16);
     }
 
     // Dienste
@@ -58,50 +54,77 @@ public class Player
     }
     
     public void playermain(){
-        controlsOverworld();
+        while(true){    
+            charakterSprites.zeichneSpriteMitFaktor(Spalte, Zeile, playerX, playerY, 200);
+            controlsOverworld();
+            derBildschirm.zeichneDich();
+            derBildschirm.loescheAlles();
+        }
     }
     
     public void controlsOverworld(){
-        while (true){
-            if(dieTastatur.wurdeGedrueckt()){
+        while(true){   
+            while(dieTastatur.wurdeGedrueckt()){
                 if(dieTastatur.zeichen() == 'w'){
-                    if(direction == "right"){
-                        meinStift.dreheUm(90);
-                    }else if(direction == "left"){
-                        meinStift.dreheUm(-90);
-                    }else if(direction == "down"){
-                        meinStift.dreheUm(180);
-                    }
                     direction = "up";
+                    playerY = playerY-2;
+                    if (AnimUp == 1){
+                        Spalte = 3;
+                        Zeile = 1;
+                    }else if (AnimUp == 2){
+                        Spalte = 3;
+                        Zeile = 0;
+                    }else if (AnimUp == 3){
+                        Spalte = 4;
+                        Zeile = 1;
+                    }
+                    AnimUp++;
+                    if(AnimUp > 3){
+                        AnimUp = 1;
+                    }
                 }else if(dieTastatur.zeichen() == 's'){
-                    if(direction == "right"){
-                        meinStift.dreheUm(-90);
-                    }else if(direction == "left"){
-                        meinStift.dreheUm(90);
-                    }else if(direction == "up"){
-                        meinStift.dreheUm(180);
-                    }
                     direction = "down";
+                    playerY = playerY+2;
+                    if (AnimDown == 1){
+                        Spalte = 0;
+                        Zeile = 1;
+                    }else if (AnimDown == 2){
+                        Spalte = 0;
+                        Zeile = 0;
+                    }else if (AnimDown == 3){
+                        Spalte = 4;
+                        Zeile = 0;
+                    }
+                    AnimDown++;
+                    if (AnimDown > 3){
+                        AnimDown = 1;
+                    }
                 }else if(dieTastatur.zeichen() == 'a'){
-                    if(direction == "right"){
-                        meinStift.dreheUm(180);
-                    }else if(direction == "up"){
-                        meinStift.dreheUm(-90);
-                    }else if(direction == "down"){
-                        meinStift.dreheUm(90);
-                    }
                     direction = "left";
+                    charakterSprites.zeichneSpriteMitFaktor(1, 1, playerX, playerY, 200);
+                    derBildschirm.zeichneDich();
+                    playerY = playerX-2;
+                    derBildschirm.loescheAlles();
+                    charakterSprites.zeichneSpriteMitFaktor(1, 0, playerX, playerY, 200);
+                    derBildschirm.zeichneDich();
+                    playerY = playerX-5;
+                    derBildschirm.loescheAlles();
                 }else if(dieTastatur.zeichen() == 'd'){
-                    if(direction == "left"){
-                        meinStift.dreheUm(180);
-                    }else if(direction == "up"){
-                        meinStift.dreheUm(90);
-                    }else if(direction == "down"){
-                        meinStift.dreheUm(-90);
-                    }
                     direction = "right";
+                    charakterSprites.zeichneSpriteMitFaktor(2, 1, playerX, playerY, 200);
+                    derBildschirm.zeichneDich();
+                    playerY = playerX+2;
+                    derBildschirm.loescheAlles();
+                    charakterSprites.zeichneSpriteMitFaktor(2, 0, playerX, playerY, 200);
+                    derBildschirm.zeichneDich();
+                    playerY = playerX+5;
+                    derBildschirm.loescheAlles();
                 }
             }
         }
+    }
+    
+    public void controlsBattle(){
+    
     }
 }
