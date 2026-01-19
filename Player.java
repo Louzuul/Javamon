@@ -11,13 +11,10 @@ public class Player
     Buntstift meinStift;
     Tastatur dieTastatur;
     Uhr dieUhr;
-    Spritesheet charakterSprites;
-    
+    Spritesheet playerOverworld;
+    Spritesheet playerBattle;
+
     String direction = "up";
-    int walkUp = 0;
-    int walkRight = 0;
-    int walkDown = 0;
-    int walkLeft = 0;
     int idleUp = 1;
     int idleRight = 0;
     int idleDown = 0;
@@ -38,7 +35,7 @@ public class Player
         meinStift = new Buntstift();
         dieTastatur = new Tastatur();
         dieUhr = new Uhr();
-        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerOverworld.png", Spritesheet.SPRITE_16);
+        playerOverworld = new Spritesheet(meinStift, "assets/sprites/Player/PlayerOverworld.png", Spritesheet.SPRITE_16);
     }
 
     // Dienste
@@ -47,84 +44,88 @@ public class Player
         // Aktionsteil
         meinStift.bewegeBis(100, 100);
         meinStift.schreibeText("Hallo Welt");
-        
+
         // Aufraeumen
         meinStift.gibFrei();
         derBildschirm.gibFrei();
     }
-    
-    public void playermain(){
-        while(true){    
-            charakterSprites.zeichneSpriteMitFaktor(Spalte, Zeile, playerX, playerY, 200);
-            controlsOverworld();
-            derBildschirm.zeichneDich();
-            derBildschirm.loescheAlles();
-        }
+
+    public void main(){   
+        playerOverworld.zeichneSpriteMitFaktor(Spalte, Zeile, playerX, playerY, 200);
+        derBildschirm.zeichneDich();
+        controlsOverworld();
     }
-    
+
     public void controlsOverworld(){
-        while(true){   
-            while(dieTastatur.wurdeGedrueckt()){
-                if(dieTastatur.zeichen() == 'w'){
-                    direction = "up";
-                    playerY = playerY-2;
-                    if (AnimUp == 1){
-                        Spalte = 3;
-                        Zeile = 1;
-                    }else if (AnimUp == 2){
-                        Spalte = 3;
-                        Zeile = 0;
-                    }else if (AnimUp == 3){
-                        Spalte = 4;
-                        Zeile = 1;
-                    }
-                    AnimUp++;
-                    if(AnimUp > 3){
-                        AnimUp = 1;
-                    }
-                }else if(dieTastatur.zeichen() == 's'){
-                    direction = "down";
-                    playerY = playerY+2;
-                    if (AnimDown == 1){
-                        Spalte = 0;
-                        Zeile = 1;
-                    }else if (AnimDown == 2){
-                        Spalte = 0;
-                        Zeile = 0;
-                    }else if (AnimDown == 3){
-                        Spalte = 4;
-                        Zeile = 0;
-                    }
-                    AnimDown++;
-                    if (AnimDown > 3){
-                        AnimDown = 1;
-                    }
-                }else if(dieTastatur.zeichen() == 'a'){
-                    direction = "left";
-                    charakterSprites.zeichneSpriteMitFaktor(1, 1, playerX, playerY, 200);
-                    derBildschirm.zeichneDich();
-                    playerY = playerX-2;
-                    derBildschirm.loescheAlles();
-                    charakterSprites.zeichneSpriteMitFaktor(1, 0, playerX, playerY, 200);
-                    derBildschirm.zeichneDich();
-                    playerY = playerX-5;
-                    derBildschirm.loescheAlles();
-                }else if(dieTastatur.zeichen() == 'd'){
-                    direction = "right";
-                    charakterSprites.zeichneSpriteMitFaktor(2, 1, playerX, playerY, 200);
-                    derBildschirm.zeichneDich();
-                    playerY = playerX+2;
-                    derBildschirm.loescheAlles();
-                    charakterSprites.zeichneSpriteMitFaktor(2, 0, playerX, playerY, 200);
-                    derBildschirm.zeichneDich();
-                    playerY = playerX+5;
-                    derBildschirm.loescheAlles();
+        if(dieTastatur.wurdeGedrueckt()){
+            if(dieTastatur.zeichen() == 'w'){
+                direction = "up";
+                playerY = playerY-2;
+                if (AnimUp == 1){
+                    Spalte = 3;
+                    Zeile = 1;
+                }else if (AnimUp == 2){
+                    Spalte = 3;
+                    Zeile = 0;
+                }else if (AnimUp == 3){
+                    Spalte = 4;
+                    Zeile = 1;
+                }
+                AnimUp++;
+                if(AnimUp > 3){
+                    AnimUp = 1;
+                }
+            }else if(dieTastatur.zeichen() == 's'){
+                direction = "down";
+                playerY = playerY+2;
+                if (AnimDown == 1){
+                    Spalte = 0;
+                    Zeile = 1;
+                }else if (AnimDown == 2){
+                    Spalte = 0;
+                    Zeile = 0;
+                }else if (AnimDown == 3){
+                    Spalte = 4;
+                    Zeile = 0;
+                }
+                AnimDown++;
+                if (AnimDown > 3){
+                    AnimDown = 1;
+                }
+            }else if(dieTastatur.zeichen() == 'a'){
+                direction = "left";
+                playerX = playerX-2;
+                if (AnimLeft == 1){
+                    Spalte = 1;
+                    Zeile = 1;
+                }else if (AnimLeft == 2){
+                    Spalte = 1;
+                    Zeile = 0;
+                }
+                AnimLeft++;
+                if (AnimLeft > 2){
+                    AnimLeft = 1;
+                }
+            }else if(dieTastatur.zeichen() == 'd'){
+                direction = "right";
+                playerX = playerX+2;
+                if (AnimRight == 1){
+                    Spalte = 2;
+                    Zeile = 1;
+                }else if (AnimRight == 2){
+                    Spalte = 2;
+                    Zeile = 0;
+                }
+                AnimRight++;
+                if (AnimRight > 2){
+                    AnimRight = 1;
                 }
             }
+            dieTastatur.weiter();
         }
     }
-    
+
     public void controlsBattle(){
-    
+
     }
 }

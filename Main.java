@@ -8,13 +8,17 @@ public class Main
 {
     // Objekte
     Bildschirm derBildschirm;
-    Stift meinStift;
+    Buntstift meinStift;
+    Player player;
+    
+    int Overworld = 1;
+    int Battle = 0;
     
     // Konstruktor
     public Main()
     {
         derBildschirm = new Bildschirm();
-        meinStift = new Stift();
+        meinStift = new Buntstift();
     }
 
     // Dienste
@@ -27,5 +31,12 @@ public class Main
         // Aufraeumen
         meinStift.gibFrei();
         derBildschirm.gibFrei();
+        player.main();
+    }
+    
+    public void main(){
+        while (Overworld == 1){
+            player.main();
+        }
     }
 }
