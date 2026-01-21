@@ -9,16 +9,21 @@ public class Main
     // Objekte
     Bildschirm derBildschirm;
     Buntstift meinStift;
-    Player player;
+    Overworld overworld;
+    Battle battle;
+    Spritesheet Font;
     
     int Overworld = 1;
     int Battle = 0;
     
+    
     // Konstruktor
     public Main()
     {
-        derBildschirm = new Bildschirm();
-        meinStift = new Buntstift();
+        derBildschirm = new Bildschirm(1980,1080,true);
+        overworld = new Overworld();
+        battle = new Battle();
+        Font = new Spritesheet(meinStift, "assets/sprites/Font.png", Spritesheet.SPRITE_22);
     }
 
     // Dienste
@@ -31,12 +36,14 @@ public class Main
         // Aufraeumen
         meinStift.gibFrei();
         derBildschirm.gibFrei();
-        player.main();
     }
     
     public void main(){
         while (Overworld == 1){
-            player.main();
+            overworld.main();
+        }
+        while (Battle == 1){
+            battle.main();
         }
     }
 }

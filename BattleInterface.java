@@ -4,7 +4,7 @@ import sum.werkzeuge.*;
  * @author 
  * @version 
  */
-public class BattleInstance
+public class BattleInterface
 {
     // Objekte
     Bildschirm derBildschirm;
@@ -13,12 +13,11 @@ public class BattleInstance
     Spritesheet charakterSprites;
 
     // Konstruktor
-    public BattleInstance()
+    public BattleInterface()
     {
         derBildschirm = new Bildschirm();
         meinStift = new Buntstift();
         dieUhr = new Uhr();
-        charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerBattle", Spritesheet.SPRITE_48);
     }
 
     // Dienste
@@ -34,19 +33,6 @@ public class BattleInstance
     }
     
     public void main(){
-        int battle = 1;
-        while (battle != 0){
-            if (battle == 1){
-                MP3Player.play("assets/bgm/battle.mp3");
-                dieUhr.warte(5000);
-                battle++;
-            }else if (battle == 2){
-                MP3Player.stop();
-                MP3Player.play("assets/bgm/battlewon.mp3");
-            }
-        }
-    }
     
-    public void player(){
     }
 }

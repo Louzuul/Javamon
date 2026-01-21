@@ -4,17 +4,22 @@ import sum.kern.*;
  * @author 
  * @version 
  */
-public class Rival
+public class Battle
 {
     // Objekte
     Bildschirm derBildschirm;
     Stift meinStift;
+    PlayerBattle player;
+    RedAI red;
+    BattleInterface UI;
 
     // Konstruktor
-    public Rival()
+    public Battle()
     {
-        derBildschirm = new Bildschirm();
         meinStift = new Stift();
+        player = new PlayerBattle();
+        red = new RedAI();
+        UI = new BattleInterface();
     }
 
     // Dienste
@@ -27,5 +32,9 @@ public class Rival
         // Aufraeumen
         meinStift.gibFrei();
         derBildschirm.gibFrei();
+    }
+    
+    public void main(){
+    
     }
 }

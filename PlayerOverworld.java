@@ -4,7 +4,7 @@ import sum.werkzeuge.*;
  * @author 
  * @version 
  */
-public class Player
+public class PlayerOverworld
 {
     // Objekte
     Bildschirm derBildschirm;
@@ -15,10 +15,6 @@ public class Player
     Spritesheet playerBattle;
 
     String direction = "up";
-    int idleUp = 1;
-    int idleRight = 0;
-    int idleDown = 0;
-    int idleLeft = 0;
     int playerX = 990;
     int playerY = 540;
     int Spalte = 3;
@@ -29,13 +25,21 @@ public class Player
     int AnimRight = 1;
 
     // Konstruktor
-    public Player()
+    public PlayerOverworld()
     {
         derBildschirm = new Bildschirm(1980,1080,true);
         meinStift = new Buntstift();
         dieTastatur = new Tastatur();
         dieUhr = new Uhr();
         playerOverworld = new Spritesheet(meinStift, "assets/sprites/Player/PlayerOverworld.png", Spritesheet.SPRITE_16);
+    }
+
+    public int gibX(){
+        return playerX;
+    }
+
+    public int gibY(){
+        return playerY;
     }
 
     // Dienste
@@ -50,13 +54,14 @@ public class Player
         derBildschirm.gibFrei();
     }
 
-    public void main(){   
+    public void main(){
         playerOverworld.zeichneSpriteMitFaktor(Spalte, Zeile, playerX, playerY, 200);
         derBildschirm.zeichneDich();
-        controlsOverworld();
+        controls();
+        derBildschirm.loescheAlles();
     }
 
-    public void controlsOverworld(){
+    public void controls(){
         if(dieTastatur.wurdeGedrueckt()){
             if(dieTastatur.zeichen() == 'w'){
                 direction = "up";
@@ -123,9 +128,5 @@ public class Player
             }
             dieTastatur.weiter();
         }
-    }
-
-    public void controlsBattle(){
-
     }
 }
