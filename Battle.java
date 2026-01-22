@@ -9,7 +9,7 @@ public class Battle
     // Objekte
     Bildschirm derBildschirm;
     Stift meinStift;
-    PlayerBattle player;
+    PlayerPokemon player;
     RedAI red;
     BattleInterface UI;
 
@@ -17,7 +17,7 @@ public class Battle
     public Battle()
     {
         meinStift = new Stift();
-        player = new PlayerBattle();
+        player = new PlayerPokemon();
         red = new RedAI();
         UI = new BattleInterface();
     }
@@ -35,6 +35,6 @@ public class Battle
     }
     
     public void main(){
-    
+        MP3Player.play("assets/bgm/battle.wav");
     }
 }

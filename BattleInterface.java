@@ -9,15 +9,30 @@ public class BattleInterface
     // Objekte
     Bildschirm derBildschirm;
     Buntstift meinStift;
-    Uhr dieUhr;
-    Spritesheet charakterSprites;
+    Tastatur dieTastatur;
+    Spritesheet UIsprites;
+    Spritesheet BagSprites;
+    Spritesheet PokemonUIsprites;
+    Spritesheet PlayerBattleSprites;
+    Spritesheet RedBattleSprites;
+    Spritesheet PlayerPokemonSprites;
+    Spritesheet RedPokemonSprites;
+    
+    String UI = "Start";
 
     // Konstruktor
     public BattleInterface()
     {
         derBildschirm = new Bildschirm();
         meinStift = new Buntstift();
-        dieUhr = new Uhr();
+        dieTastatur = new Tastatur();
+        UIsprites = new Spritesheet(meinStift, "assets/sprites/BattleUI/BattleUI.png", Spritesheet.SPRITE_160);
+        BagSprites = new Spritesheet(meinStift, "assets/sprites/BattleUI/BagUI.png", Spritesheet.SPRITE_160);
+        PokemonUIsprites = new Spritesheet(meinStift, "assets/sprites/BattleUI/PokemonUI.png", Spritesheet.SPRITE_160);
+        PlayerBattleSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerBattle.png", Spritesheet.SPRITE_54);
+        RedBattleSprites = new Spritesheet(meinStift, "assets/sprites/Red/Red.png", Spritesheet.SPRITE_54);
+        PlayerPokemonSprites = new Spritesheet(meinStift, "assets/sprites/Player/Pokemon.png", Spritesheet.SPRITE_48);
+        RedPokemonSprites = new Spritesheet(meinStift, "assets/sprites/Red/Pokemon.png", Spritesheet.SPRITE_48);
     }
 
     // Dienste
@@ -33,6 +48,17 @@ public class BattleInterface
     }
     
     public void main(){
-    
+        if(UI == "Start"){
+            UIsprites.zeichneSpriteMitFaktor(0, 0, 500, 0, 600);
+            if(dieTastatur.wurdeGedrueckt()){
+                if(dieTastatur.zeichen() == 'j'){
+                    UI = "Base";
+                }
+                dieTastatur.weiter();
+            }
+        }else if(UI == "Base"){
+            UIsprites.zeichneSpriteMitFaktor(0, 1, 500, 0, 600);
+        }else if(UI == "SelectAttack")
+        derBildschirm.zeichneDich();
     }
 }

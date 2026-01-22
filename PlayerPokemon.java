@@ -4,14 +4,14 @@ import sum.kern.*;
  * @author 
  * @version 
  */
-public class PlayerBattle
+public class PlayerPokemon
 {
     // Objekte
     Bildschirm derBildschirm;
     Stift meinStift;
 
     // Konstruktor
-    public PlayerBattle()
+    public PlayerPokemon()
     {
         derBildschirm = new Bildschirm();
         meinStift = new Stift();
