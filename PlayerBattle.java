@@ -13,8 +13,7 @@ public class PlayerBattle
     // Konstruktor
     public PlayerBattle()
     {
-        derBildschirm = new Bildschirm();
-        meinStift = new Stift();
+
     }
 
     // Dienste

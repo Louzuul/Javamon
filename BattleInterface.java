@@ -15,9 +15,6 @@ public class BattleInterface
     // Konstruktor
     public BattleInterface()
     {
-        derBildschirm = new Bildschirm();
-        meinStift = new Buntstift();
-        dieUhr = new Uhr();
     }
 
     // Dienste

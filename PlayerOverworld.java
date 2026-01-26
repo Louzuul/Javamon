@@ -25,10 +25,10 @@ public class PlayerOverworld
     int AnimRight = 1;
 
     // Konstruktor
-    public PlayerOverworld()
+    public PlayerOverworld(Buntstift stift, Bildschirm schirm)
     {
-        derBildschirm = new Bildschirm(1980,1080,true);
-        meinStift = new Buntstift();
+        derBildschirm = schirm;
+        meinStift = stift;
         dieTastatur = new Tastatur();
         dieUhr = new Uhr();
         playerOverworld = new Spritesheet(meinStift, "assets/sprites/Player/PlayerOverworld.png", Spritesheet.SPRITE_16);
@@ -40,18 +40,6 @@ public class PlayerOverworld
 
     public int gibY(){
         return playerY;
-    }
-
-    // Dienste
-    public void fuehreAus()
-    {
-        // Aktionsteil
-        meinStift.bewegeBis(100, 100);
-        meinStift.schreibeText("Hallo Welt");
-
-        // Aufraeumen
-        meinStift.gibFrei();
-        derBildschirm.gibFrei();
     }
 
     public void main(){

@@ -21,26 +21,21 @@ public class Main
     public Main()
     {
         derBildschirm = new Bildschirm(1980,1080,true);
-        overworld = new Overworld();
+        meinStift = new Buntstift();
+        overworld = new Overworld(meinStift, derBildschirm);
         battle = new Battle();
         Font = new Spritesheet(meinStift, "assets/sprites/Font.png", Spritesheet.SPRITE_22);
+        main();
     }
 
-    // Dienste
-    public void fuehreAus()
-    {
-        // Aktionsteil
-        meinStift.bewegeBis(100, 100);
-        meinStift.schreibeText("Hallo Welt");
-        
-        // Aufraeumen
-        meinStift.gibFrei();
-        derBildschirm.gibFrei();
-    }
     
     public void main(){
         while (Overworld == 1){
             overworld.main();
+            if (overworld.OverworldCheck() == 0){
+                Overworld = 0;
+                Battle = 1;
+            }
         }
         while (Battle == 1){
             battle.main();

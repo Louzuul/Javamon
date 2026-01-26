@@ -7,39 +7,31 @@ import sum.kern.*;
 public class Overworld
 {
     // Objekte
-    Bildschirm derBildschirm;
+
     Buntstift meinStift;
     PlayerOverworld player;
     Spritesheet Red;
+    
+    int Overworld = 1;
 
     // Konstruktor
-    public Overworld()
+    public Overworld(Buntstift stift, Bildschirm schirm)
     {
-        derBildschirm = new Bildschirm();
-        meinStift = new Buntstift();
-        player = new PlayerOverworld();
+
+        meinStift = stift;
+        player = new PlayerOverworld(meinStift, schirm);
         Red = new Spritesheet(meinStift, "assets/sprites/Red/RedOverworld.png", Spritesheet.SPRITE_16);
     }
-
-    // Dienste
-    public void fuehreAus()
-    {
-        // Aktionsteil
-        meinStift.bewegeBis(100, 100);
-        meinStift.schreibeText("Hallo Welt");
-        
-        // Aufraeumen
-        meinStift.gibFrei();
-        derBildschirm.gibFrei();
+    
+    public int OverworldCheck(){
+        return Overworld;
     }
     
     public void main(){
         Red.zeichneSpriteMitFaktor(0, 0, 990, 200, 200);
         player.main();
         if (player.gibX() == 990 && player.gibY() == 210){
-            meinStift.bewegeBis(700, 870);
-            meinStift.zeichneRechteck(700, 200);
-            
+            Overworld = 0;
         }
     }
 }

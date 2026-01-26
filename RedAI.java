@@ -13,8 +13,7 @@ public class RedAI
     // Konstruktor
     public RedAI()
     {
-        derBildschirm = new Bildschirm();
-        meinStift = new Stift();
+        
     }
 
     // Dienste
