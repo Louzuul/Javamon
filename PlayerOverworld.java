@@ -10,7 +10,6 @@ public class PlayerOverworld
     Bildschirm derBildschirm;
     Buntstift meinStift;
     Tastatur dieTastatur;
-    Uhr dieUhr;
     Spritesheet playerOverworld;
     Spritesheet playerBattle;
 
@@ -25,12 +24,11 @@ public class PlayerOverworld
     int AnimRight = 1;
 
     // Konstruktor
-    public PlayerOverworld(Buntstift stift, Bildschirm schirm)
+    public PlayerOverworld(Buntstift stift, Bildschirm schirm, Tastatur tasten)
     {
         derBildschirm = schirm;
         meinStift = stift;
-        dieTastatur = new Tastatur();
-        dieUhr = new Uhr();
+        dieTastatur = tasten;
         playerOverworld = new Spritesheet(meinStift, "assets/sprites/Player/PlayerOverworld.png", Spritesheet.SPRITE_16);
     }
 

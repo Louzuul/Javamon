@@ -19,6 +19,7 @@ public class Spritesheet {
     public static final int SPRITE_48 = 48;
     public static final int SPRITE_54 = 54;
     public static final int SPRITE_64 = 64;
+    public static final int SPRITE_160 = 160;
     
     private BufferedImage spritesheet;
     private int spriteGroesse;

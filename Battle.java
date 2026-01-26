@@ -1,5 +1,5 @@
-
 import sum.kern.*;
+import sum.werkzeuge.*;
 /**
  * @author 
  * @version 
@@ -9,22 +9,17 @@ public class Battle
     // Objekte
     Bildschirm derBildschirm;
     Stift meinStift;
-    PlayerBattle player;
-    RedAI red;
     BattleInterface UI;
 
     // Konstruktor
-    public Battle()
+    public Battle(Buntstift stift, Bildschirm schirm, Tastatur tasten)
     {
-
-        player = new PlayerBattle();
-        red = new RedAI();
+        meinStift = new Stift();
         UI = new BattleInterface();
     }
 
 
     
     public void main(){
-    
     }
 }
