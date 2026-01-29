@@ -9,11 +9,17 @@ public class RedAI
     // Objekte
     Bildschirm derBildschirm;
     Stift meinStift;
+    
+    String currentPKMN = "Pikachu";
 
     // Konstruktor
     public RedAI()
     {
         
+    }
+    
+    public String PKMN(){
+        return currentPKMN;
     }
 
     // Dienste

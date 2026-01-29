@@ -8,18 +8,20 @@ public class Battle
 {
     // Objekte
     Bildschirm derBildschirm;
-    Stift meinStift;
+    Buntstift meinStift;
+    Tastatur dieTastatur;
     BattleInterface UI;
 
     // Konstruktor
     public Battle(Buntstift stift, Bildschirm schirm, Tastatur tasten)
     {
-        meinStift = new Stift();
-        UI = new BattleInterface();
+        derBildschirm = schirm;
+        meinStift = stift;
+        dieTastatur = tasten;
+        UI = new BattleInterface(stift, schirm, tasten);
     }
-
-
     
     public void main(){
+        UI.main();
     }
 }

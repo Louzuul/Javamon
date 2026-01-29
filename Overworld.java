@@ -34,9 +34,6 @@ public class Overworld
         Red.zeichneSpriteMitFaktor(0, 0, 990, 200, 200);
         player.main();
         if (player.gibX() == 990 && player.gibY() == 210){
-            MP3Player.play("assets/bgm/encounter.wav");
-            dieUhr.warte(1000);
-            MP3Player.stop();
             Overworld = 0;
         }
     }

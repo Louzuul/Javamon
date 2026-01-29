@@ -1,5 +1,6 @@
 import sum.kern.*;
 import sum.werkzeuge.*;
+import java.util.*;
 /**
  * @author 
  * @version 
@@ -10,9 +11,9 @@ public class BattleInterface
     Bildschirm derBildschirm;
     Buntstift meinStift;
     Tastatur dieTastatur;
-    Spritesheet UIsprites;
-    Spritesheet BagSprites;
-    Spritesheet PokemonUIsprites;
+    Random rand;
+    Spritesheet UINotif;
+    Spritesheet UISelect;
     Spritesheet PlayerBattleSprites;
     Spritesheet RedBattleSprites;
     Spritesheet PlayerPokemonSprites;
@@ -23,15 +24,16 @@ public class BattleInterface
     String UI = "Start";
 
     // Konstruktor
-    public BattleInterface()
+    public BattleInterface(Buntstift stift, Bildschirm schirm, Tastatur tasten)
     {
-        meinStift = new Buntstift();
-        dieTastatur = new Tastatur();
+        derBildschirm = schirm;
+        meinStift = stift;
+        dieTastatur = tasten;
         RAI = new RedAI();
+        rand = new Random();
         PPKMN = new PlayerPokemon();
-        UIsprites = new Spritesheet(meinStift, "assets/sprites/BattleUI/BattleUI.png", Spritesheet.SPRITE_160);
-        BagSprites = new Spritesheet(meinStift, "assets/sprites/BattleUI/BagUI.png", Spritesheet.SPRITE_160);
-        PokemonUIsprites = new Spritesheet(meinStift, "assets/sprites/BattleUI/PokemonUI.png", Spritesheet.SPRITE_160);
+        UINotif = new Spritesheet(meinStift, "assets/sprites/BattleUI/UI.png", Spritesheet.SPRITE_160);
+        UISelect = new Spritesheet(meinStift, "assets/sprites/BattleUI/UI2.png", Spritesheet.SPRITE_160);
         PlayerBattleSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerBattle.png", Spritesheet.SPRITE_54);
         RedBattleSprites = new Spritesheet(meinStift, "assets/sprites/Red/Red.png", Spritesheet.SPRITE_54);
         PlayerPokemonSprites = new Spritesheet(meinStift, "assets/sprites/Player/Pokemon.png", Spritesheet.SPRITE_48);
@@ -52,16 +54,8 @@ public class BattleInterface
     
     public void main(){
         if(UI == "Start"){
-            UIsprites.zeichneSpriteMitFaktor(0, 0, 500, 0, 600);
-            if(dieTastatur.wurdeGedrueckt()){
-                if(dieTastatur.zeichen() == 'j'){
-                    UI = "Base";
-                }
-                dieTastatur.weiter();
-            }
-        }else if(UI == "Base"){
-            UIsprites.zeichneSpriteMitFaktor(0, 1, 500, 0, 600);
-        }else if(UI == "SelectAttack")
+            
+        }
         derBildschirm.zeichneDich();
     }
 }
