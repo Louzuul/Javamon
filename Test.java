@@ -15,7 +15,6 @@ public class Test
     // Konstruktor
     public Test()
     {
-        derBildschirm = new Bildschirm();
         meinStift = new Buntstift();
         dieUhr = new Uhr();
         charakterSprites = new Spritesheet(meinStift, "assets/sprites/Player/PlayerBattle", Spritesheet.SPRITE_48);
@@ -41,7 +40,6 @@ public class Test
                 dieUhr.warte(5000);
                 battle++;
             }else if (battle == 2){
-                MP3Player.stop();
                 MP3Player.play("assets/bgm/battlewon.mp3");
             }
         }
